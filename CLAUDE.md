@@ -71,10 +71,16 @@ The rules are [ADR-004](record/decisions.d/ADR-004.md); the reasons are there to
 
 ## Units of work
 
-The rules are [ADR-005](record/decisions.d/ADR-005.md).
+The rules are [ADR-005](record/decisions.d/ADR-005.md); the steps are [SOP-002](record/procedures.d/SOP-002.md).
 
-- **One logical unit per pull request.** A decision, principle or SOP goes
-  with its first application, in the same pull request.
+- **A session has one branch and one pull request into `main`**, which the
+  owner reviews as a sequence of commits and merges with a merge commit,
+  never a squash.
+- **Each logical unit gets its own branch and pull request into the session
+  branch.** Cut it from the session branch's current head, never from another
+  unit's branch. Squash-merge it there when it is green.
+- **A new decision, principle or SOP carries its first application.** One
+  adopted from a sibling record cites its use there instead.
 - **Push as you go.** Leave the record's repair and lint to CI's docs-check,
   and pull before each push. Run typecheck and unit tests locally.
 - **Long or delegated work persists as it goes**: on its branch from the
