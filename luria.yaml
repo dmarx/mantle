@@ -343,6 +343,17 @@ remotes:
     repo: dmarx/nucleation
     ref: main
     dir: record/decisions.d
+    schemes:
+      DP:
+        document: docs/design-principles.md
+  SG:
+    name: strata-g
+    repo: dmarx/strata-g
+    ref: main
+    dir: docs/decisions
+    schemes:
+      DP:
+        document: docs/design-principles.md
   FX:
     name: fixtures
     url: https://github.com/dmarx/luria/blob/main/docs/directives.md#fixture-codes

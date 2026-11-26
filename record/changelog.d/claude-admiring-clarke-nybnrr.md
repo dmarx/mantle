@@ -10,6 +10,10 @@
   `record/procedures.d/` for step-by-step processes, scaffolded with
   purpose, preconditions, checked steps, done-when and pitfalls, and linked
   to the decisions it carries out. [SOP-001](record/procedures.d/SOP-001.md): closing a batch of work.
+- Principles [DP-007](docs/design-principles.md#dp-7) to [DP-014](docs/design-principles.md#dp-14), adopted from strata-g, nucleation and luria
+  and restated for mantle; strata-g added as the `SG` remote.
+- How the assistant works with the owner ([ADR-004](record/decisions.d/ADR-004.md)) and units of work
+  ([ADR-005](record/decisions.d/ADR-005.md)), adopted from nucleation's and strata-g's practice.
 
 ### Documentation
 

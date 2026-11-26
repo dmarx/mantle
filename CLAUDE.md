@@ -52,6 +52,34 @@ Four ground rules, terse enough to restate:
   the net. Quiet guards are the goal; a busy one is compensating for
   something.
 
+## Working with the owner
+
+The rules are [ADR-004](record/decisions.d/ADR-004.md); the reasons are there too.
+
+- **Stop on what is hard to undo**, CRM style: what you were about to do,
+  the concern, your recommendation, and that you are waiting. Carry on with
+  the rest of the turn.
+- **A go-ahead covers the whole message it answers**, and adopts the lean
+  you stated. **When a hold the owner set lifts, take the step** in that
+  turn.
+- **Report from ground truth.** PR and CI state, test results, sizes, times
+  and site behaviour are fetched right before you state them. Durations come
+  from timestamps, with their unit.
+- **Think out loud.** Say what you are doing and why, relay what delegated
+  work found (and where it strayed from its brief), and close a batch with a
+  summary ([SOP-001](record/procedures.d/SOP-001.md)).
+
+## Units of work
+
+The rules are [ADR-005](record/decisions.d/ADR-005.md).
+
+- **One logical unit per pull request.** A decision, principle or SOP goes
+  with its first application, in the same pull request.
+- **Push as you go.** Leave the record's repair and lint to CI's docs-check,
+  and pull before each push. Run typecheck and unit tests locally.
+- **Long or delegated work persists as it goes**: on its branch from the
+  first step, pushed after each one, with its brief in the repository.
+
 ## Retrospectives
 
 The process is [ADR-002](record/decisions.d/ADR-002.md), adopted from nucleation.
