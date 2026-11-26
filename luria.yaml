@@ -1,0 +1,134 @@
+vocabularies:
+  # The words this record's documents may use, and what each means.
+  #
+  # A DEFAULT, not a law: rename these, drop the ones you do not want,
+  # add your own. Every check reads this. The one rule is that a
+  # scheme's `active` word has to appear here — it is how everything
+  # decides what is in force, so a vocabulary without it means no
+  # document ever is.
+  #
+  # Named once and referenced by every scheme that uses it, so two
+  # schemes sharing a vocabulary cannot drift apart (ADR-tmp8hp25).
+  statuses:
+    Active:
+      blurb: in force — the current answer, and what a citation should normally point at
+    Proposed:
+      blurb: not in force yet — an open question, so citing it as settled is the thing the report catches
+    Deferred:
+      blurb: not in force and not being worked on; the question is real and the answer is waiting on something
+    Superseded:
+      blurb: no longer in force because something replaced it; the successor is named in the field, not the prose
+    Rejected:
+      blurb: no longer in force and nothing replaced it — kept because a rejection is worth being able to point at
+  adr-tags:
+    record:
+      label: The record
+      blurb: what the four layers hold, and the rules between them
+    mechanism:
+      label: Mechanism
+      blurb: collectors, generators, the lint, the directive vocabulary
+    process:
+      label: Process
+      blurb: how the machinery is adopted, run, and reported on
+    architecture:
+      label: Architecture
+      blurb: how mantle is built — the shell, the manifest, the data it reads
+    product:
+      label: Product
+      blurb: what a visitor and a publishing project get, and what they are spared
+issue_url: 'https://github.com/dmarx/mantle/issues/{n}'
+paths:
+  docs: docs
+  decisions: record/decisions.d
+  design_principles: docs/design-principles.md
+  reports: docs/reports
+fragments:
+  record/changelog.d: CHANGELOG.md
+journals:
+  devlog:
+    dir: record/devlog.d
+    output: docs/devlog
+    granularity: month
+    title: Development log
+code:
+  globs: []
+  historical:
+  - CHANGELOG.md
+schemes:
+  ADR:
+    title: Decisions
+    blurb: >-
+      A decision about how the project works, with the alternatives it
+      rejected. It is superseded when the choice changes, and corrected in
+      place, with its version bumped, when only a reason was wrong.
+    dir: record/decisions.d
+    output: docs/decisions
+    active: Active
+    render: index
+    successor: superseded_by
+    retires_on: Superseded
+    fields:
+      status:
+        vocabulary: statuses
+      tags:
+        vocabulary: adr-tags
+        many: true
+        required: true
+        closed: false
+    axis: tags
+    references:
+      superseded_by:
+        scheme: ADR
+        many: true
+        required: false
+        required_when:
+          status:
+          - Superseded
+        forbidden_when:
+          status:
+          - Active
+  DP:
+    title: Design principles
+    blurb: >-
+      A standing value that decisions cite by number, stated as a claim
+      someone could disagree with. Read as one page.
+    dir: record/principles.d
+    active: Active
+    render: document
+    output: docs/design-principles.md
+    successor: superseded_by
+    retires_on: Superseded
+    fields:
+      status:
+        vocabulary: statuses
+      tags:
+        many: true
+        required: true
+        closed: false
+    axis: tags
+    references:
+      superseded_by:
+        scheme: DP
+        many: true
+        required: false
+        required_when:
+          status:
+          - Superseded
+        forbidden_when:
+          status:
+          - Active
+remotes:
+  LU:
+    name: luria
+    repo: dmarx/luria
+    ref: main
+    dir: record/decisions.d
+    schemes:
+      DP:
+        document: docs/design-principles.md
+  FX:
+    name: fixtures
+    url: https://github.com/dmarx/luria/blob/main/docs/directives.md#fixture-codes
+lint:
+  fail_on:
+  - workflow-temp-codes
