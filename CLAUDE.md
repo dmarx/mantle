@@ -76,7 +76,22 @@ The process is [ADR-002](record/decisions.d/ADR-002.md), adopted from nucleation
     incident (CI red twice on one cause, a revert, a broken release or site,
     a standing rule broken or nearly broken).
 
-  The owner decides whether to write it; never file one unasked.
+  The owner decides whether to write it; never file one unasked. The steps
+  are [SOP-001](record/procedures.d/SOP-001.md).
+
+## Procedures
+
+`record/procedures.d/` holds SOPs, step-by-step instructions for processes
+run more than once ([ADR-003](record/decisions.d/ADR-003.md)). Each names the decisions it carries out in
+`implements`.
+
+- **When a task matches an Active SOP's `when`, follow it**, and report any
+  step that didn't hold.
+- **A run that shows a step is wrong fixes the SOP in the same pull
+  request**: bump `version`, and add a `history` entry saying what the run
+  found.
+- **A new recurring process gets an SOP** (`luria new sop`). Don't write its
+  steps into an ADR body or restate them here.
 
 <!-- Optional: a hands-free regime (luria's decision on it, in its record). Uncomment once the project
      has an integration branch that only a promotion carries to the default

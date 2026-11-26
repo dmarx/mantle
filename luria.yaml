@@ -123,6 +123,15 @@ schemes:
         many: true
         converse: prompted
         derived: true
+      procedures:
+        label: Procedures
+        blurb: the standard operating procedures that carry out this decision's rules step by step,
+          derived from their `implements`, computed for every reader and never stored
+        scheme: SOP
+        required: false
+        many: true
+        converse: implements
+        derived: true
   DP:
     title: Design principles
     blurb: >-
@@ -145,6 +154,52 @@ schemes:
     references:
       superseded_by:
         scheme: DP
+        many: true
+        required: false
+        required_when:
+          status:
+          - Superseded
+        forbidden_when:
+          status:
+          - Active
+  SOP:
+    title: Standard operating procedures
+    blurb: >-
+      Step-by-step instructions for a process that is run more than once: when to run it, what
+      must be true before starting, the numbered steps each with how to tell it worked, when it is
+      done, and the traps. A decision (ADR) holds why and the invariants; an SOP holds how, and
+      names the decisions it carries out in `implements`. It is revised in place, with its version
+      bumped and a history entry, whenever a run shows a step is wrong or missing; it is superseded
+      only when the process itself is replaced.
+    dir: record/procedures.d
+    output: docs/procedures
+    active: Active
+    render: index
+    successor: superseded_by
+    retires_on: Superseded
+    fields:
+      status:
+        vocabulary: statuses
+      tags:
+        vocabulary: adr-tags
+        many: true
+        required: true
+        closed: false
+      when:
+        label: When to run
+        blurb: the occasion that calls for this procedure, in one sentence
+        required: true
+    axis: tags
+    references:
+      implements:
+        label: Implements
+        blurb: the decisions whose rules this procedure carries out step by step
+        scheme: ADR
+        required: false
+        many: true
+        converse: procedures
+      superseded_by:
+        scheme: SOP
         many: true
         required: false
         required_when:
