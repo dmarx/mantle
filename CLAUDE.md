@@ -52,6 +52,32 @@ Four ground rules, terse enough to restate:
   the net. Quiet guards are the goal; a busy one is compensating for
   something.
 
+## Retrospectives
+
+The process is [ADR-002](record/decisions.d/ADR-002.md), adopted from nucleation.
+
+- `record/retrospectives.d/`: RETROs, reviews of how a change or a stretch of
+  work went, including what went right. `record/postmortems.d/`:
+  POSTMORTEMs, rarer, reviews of something that went wrong. Both `review`
+  the decisions involved, link the pull requests, and name in `prompted` the
+  decisions their recommendations become.
+- **File notes as the work goes.** When something seems to be going right or
+  wrong and worth revisiting, file a devlog entry tagged `retro` (`luria new
+  devlog`) in the pull request it concerns. Say what happened, why it seems to
+  work or not, and any wrong theory and how it was found out. Going right is
+  worth a note as much as going wrong. No asking needed.
+- **Earmarks.** When the owner says something is for the retro, in any
+  words, file a note tagged `retro` and `earmarked` at once. Quote the
+  earmark and say where it was made. The next RETRO answers each one by name.
+- **When a batch closes, check the triggers** and say which are met:
+  - a RETRO for a contract change that has been used, five or more pull
+    requests in a session, a release, or a site moving onto mantle;
+  - a POSTMORTEM for a decision revised soon after landing, or a process
+    incident (CI red twice on one cause, a revert, a broken release or site,
+    a standing rule broken or nearly broken).
+
+  The owner decides whether to write it; never file one unasked.
+
 <!-- Optional: a hands-free regime (luria's decision on it, in its record). Uncomment once the project
      has an integration branch that only a promotion carries to the default
      branch, and a decision of its own adopting this.

@@ -3,6 +3,9 @@
 - A Luria record for mantle: `luria.yaml`, the decisions, principles,
   changelog and devlog directories, and the Docs and Pages workflows from
   Luria's template, with `architecture` and `product` decision tags.
+- Retrospectives, adopted from nucleation ([ADR-002](record/decisions.d/ADR-002.md)): RETRO and POSTMORTEM
+  schemes, devlog notes tagged `retro`, earmarks, and triggers the assistant
+  checks when a batch closes. nucleation's decisions are citable as `NU-…`.
 
 ### Documentation
 
